@@ -33,6 +33,15 @@ type LBItem struct {
 	QuickLookURL           string   `json:"quickLookURL,omitempty"`
 }
 
+// Helper method to ignore any query that's short (< 3 characters)
+func IgnoreEmptyAndShortQueries(query string) bool {
+	if query == "" || len(query) < 3 {
+		LBEmptyOutput()
+		return true
+	}
+	return false
+}
+
 type LBItems struct {
 	Items []LBItem
 }
